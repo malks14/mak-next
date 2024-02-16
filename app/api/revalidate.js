@@ -1,7 +1,7 @@
 import { revalidatePath } from 'next/cache'
  
 export async function GET(request) {
-  const path = request.nextUrl.searchParams.get('path')
+  const path = request.nextUrl.searchParams.get('/')
  
   if (path) {
     revalidatePath(path)
