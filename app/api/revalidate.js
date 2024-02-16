@@ -1,11 +1,16 @@
-import { revalidatePath } from 'next/cache';
-
-export default async function handler(_req, res) {
-    try {
-        revalidatePath('/');
-        return res.json({ revalidated: true });
-    } catch (error) {
-        console.error('Error occurred during revalidation:', error);
-        return res.status(500).json({ error: 'Internal Server Error' });
-    }
+import { revalidatePath } from 'next/cache'
+ 
+export async function GET(request) {
+  const path = request.nextUrl.searchParams.get('path')
+ 
+  if (path) {
+    revalidatePath(path)
+    return Response.json({ revalidated: true, now: Date.now() })
+  }
+ 
+  return Response.json({
+    revalidated: false,
+    now: Date.now(),
+    message: 'Missing path to revalidate',
+  })
 }
