@@ -1,6 +1,6 @@
 import { revalidatePath } from 'next/cache'
 export default async function handler(_req, res) {
-    await res.revalidatePath('/')
+     revalidatePath('/')
 
     return res.json({revalidated: true})
 }
