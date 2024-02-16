@@ -1,17 +1,21 @@
 import React from "react";
 import api from "./api";
+import Head from "./Head";
 
 const page = async () => {
   const links = await api.links.fetch();
   console.log("soy libn", links);
   return (
-    <ul>
-      {links.map((link) => (
-        <li key={link.PÁGINAS}>
-          <a href={link.PÁGINAS}>{link.PÁGINAS}</a>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <Head title="Links MAK" />
+      <ul>
+        {links.map((link) => (
+          <li key={link.url}>
+            <a href={link.url}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
